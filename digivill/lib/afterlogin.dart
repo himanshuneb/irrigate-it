@@ -47,13 +47,15 @@ class _InformationState extends State<Information> {
 
   postdata() async {
     try {
-      var response = await http.post(Uri.parse(""), body: {
-        "crop": dropdownValue,
-        "stage": dropdownValueStage,
-        "land": landSize.toString(),
-        "longi": longi,
-        "lati": lati,
-      });
+      var response = await http.post(
+          Uri.parse("https://cryptic-scrubland-03054.herokuapp.com/data/"),
+          body: {
+            "crop": dropdownValue,
+            "stage": dropdownValueStage,
+            "land": landSize.toString(),
+            "longi": longi,
+            "lati": lati,
+          });
       print(response.body);
     } catch (e) {
       print(e);
