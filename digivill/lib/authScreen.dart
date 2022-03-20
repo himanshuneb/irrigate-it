@@ -16,7 +16,10 @@ class AuthScreen extends StatelessWidget {
     // final transformConfig = Matrix4.rotationZ(-8 * pi / 180);
     // transformConfig.translate(-10.0);
     return Scaffold(
-      // resizeToAvoidBottomInset: false,
+      appBar: AppBar(
+        title: const Text("IRRIGATE IT"),
+        centerTitle: true,
+      ),
       body: SingleChildScrollView(
         child: AuthCard(),
       ),
@@ -153,7 +156,7 @@ class _AuthCardState extends State<AuthCard> {
                   child: Column(
                     children: <Widget>[
                       TextFormField(
-                        decoration: InputDecoration(labelText: 'E-Mail'),
+                        decoration: InputDecoration(labelText: 'Email'),
                         keyboardType: TextInputType.emailAddress,
                         validator: (value) {
                           if (value!.isEmpty || !value.contains('@')) {
@@ -197,19 +200,11 @@ class _AuthCardState extends State<AuthCard> {
                       if (_isLoading)
                         CircularProgressIndicator()
                       else
-                        RaisedButton(
+                        ElevatedButton(
                           child: Text(_authMode == AuthMode.Login
                               ? 'LOGIN'
                               : 'SIGN UP'),
                           onPressed: _submit,
-                          shape: RoundedRectangleBorder(
-                            borderRadius: BorderRadius.circular(30),
-                          ),
-                          padding: EdgeInsets.symmetric(
-                              horizontal: 30.0, vertical: 8.0),
-                          color: Theme.of(context).primaryColor,
-                          textColor:
-                              Theme.of(context).primaryTextTheme.button!.color,
                         ),
                       FlatButton(
                         child: Text(
@@ -218,7 +213,7 @@ class _AuthCardState extends State<AuthCard> {
                         padding:
                             EdgeInsets.symmetric(horizontal: 30.0, vertical: 4),
                         materialTapTargetSize: MaterialTapTargetSize.shrinkWrap,
-                        textColor: Theme.of(context).primaryColor,
+                        textColor: Colors.teal,
                       ),
                     ],
                   ),

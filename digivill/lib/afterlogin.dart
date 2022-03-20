@@ -1,17 +1,18 @@
+import 'package:digivill/waterday.dart';
 import 'package:flutter/material.dart';
 import 'package:http/http.dart' as http;
 import 'package:geolocator/geolocator.dart';
 
 class Information extends StatefulWidget {
   @override
-  State<Information> createState() => _InformationState();
+  State<Information> createState() => InformationState();
 }
 
-class _InformationState extends State<Information> {
+class InformationState extends State<Information> {
   String dropdownValue = "Wheat";
   String dropdownValueStage = "Sowing";
-  String lati = "";
-  String longi = "";
+  static String lati = "";
+  static String longi = "";
   static final landSize = TextEditingController();
   void determinePosition() async {
     bool serviceEnabled;
@@ -45,18 +46,31 @@ class _InformationState extends State<Information> {
     print(position.longitude.toString());
   }
 
+  int t = 0;
+  void datama() {
+    if (dropdownValueStage == "Sowing")
+      t = 0;
+    else if (dropdownValueStage == "Growth1")
+      t = 1;
+    else if (dropdownValueStage == "Growth2")
+      t = 2;
+    else if (dropdownValueStage == "Mature") t = 3;
+  }
+
+  static String watereq = "";
+
   postdata() async {
     try {
       var response = await http.post(
           Uri.parse("https://cryptic-scrubland-03054.herokuapp.com/data/"),
           body: {
             "crop": dropdownValue,
-            "stage": dropdownValueStage,
-            "land": landSize.toString(),
-            "longi": longi,
-            "lati": lati,
+            "crop_age": t.toString(),
+            "field_area": landSize.text,
+            "long": longi,
+            "lat": lati,
           });
-      print(response.body);
+      watereq = response.body.toString();
     } catch (e) {
       print(e);
     }
@@ -105,7 +119,7 @@ class _InformationState extends State<Information> {
                   child: TextField(
                     decoration: const InputDecoration(
                       border: OutlineInputBorder(),
-                      labelText: 'Enter Land Size',
+                      labelText: 'Enter Land Size(in msq.)',
                     ),
                     controller: landSize,
                     keyboardType: TextInputType.number,
@@ -133,7 +147,7 @@ class _InformationState extends State<Information> {
                       return DropdownMenuItem<String>(
                         value: value,
                         child: Text(value +
-                            "                                                                            "),
+                            "                                                                          "),
                       );
                     }).toList(),
                   ),
@@ -160,7 +174,7 @@ class _InformationState extends State<Information> {
                       return DropdownMenuItem<String>(
                         value: value,
                         child: Text(value +
-                            "                                                                         "),
+                            "                                                                       "),
                       );
                     }).toList(),
                   ),
@@ -171,7 +185,12 @@ class _InformationState extends State<Information> {
                     child: ElevatedButton(
                       child: const Text('Continue'),
                       onPressed: () {
+                        datama();
                         postdata();
+                        Navigator.push(
+                          context,
+                          MaterialPageRoute(builder: (context) => Waterday()),
+                        );
                       },
                     )),
               ],
