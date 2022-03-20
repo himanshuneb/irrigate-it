@@ -5,25 +5,25 @@ import 'package:http/http.dart' as http;
 import './httpException.dart';
 
 class Auth with ChangeNotifier {
-  late String _token;
-  late DateTime _expiryDate;
-  late String _userId;
+  String? _token;
+  DateTime? _expiryDate;
+  String? _userId;
 
   bool get isAuth {
     return token != null;
   }
 
-  String get token {
+  String? get token {
     if (_expiryDate != null &&
-        _expiryDate.isAfter(DateTime.now()) &&
+        _expiryDate!.isAfter(DateTime.now()) &&
         _token != null) {
       return _token;
     }
-    return "";
+    return null;
   }
 
   Future<void> _authenticate(
-      String email, String password, String urlSegment) async {
+      String? email, String? password, String urlSegment) async {
     final url = Uri.parse(
         'https://www.googleapis.com/identitytoolkit/v3/relyingparty/$urlSegment?key=AIzaSyDt7psVBCIUmpyAE7zelGRGfOqPkTIOyzM');
     try {
@@ -56,11 +56,11 @@ class Auth with ChangeNotifier {
     }
   }
 
-  Future<void> signup(String email, String password) async {
+  Future<void> signup(String? email, String? password) async {
     return _authenticate(email, password, 'signupNewUser');
   }
 
-  Future<void> login(String email, String password) async {
+  Future<void> login(String? email, String? password) async {
     return _authenticate(email, password, 'verifyPassword');
   }
 }
