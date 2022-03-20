@@ -13,24 +13,46 @@ class IrrinfoState extends State<Irrinfo> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      appBar: AppBar(
+        title: Text('Result'),
+      ),
       body: Container(
-          padding: EdgeInsets.all(40),
-          child: Container(
-            child: Column(
-              mainAxisAlignment: MainAxisAlignment.center,
-              children: <Widget>[
-                Text("Total Water Reqired: " +
-                    InformationState.watereq +
-                    " litres" +
-                    "\n"),
-                Text("Land Size:" +
-                    InformationState.landSize.text +
-                    " sq.meter" +
-                    "\n"),
-                Text("Number of Days to Water in the Week:" +
-                    WaterdayState.fucheck().toString() +
-                    "\n"),
-              ],
+          padding: EdgeInsets.fromLTRB(20, 200, 20, 200),
+          child: Card(
+            //  shape: ShapeDecoration()
+            elevation: 5,
+            child: Container(
+              child: Column(
+                mainAxisAlignment: MainAxisAlignment.center,
+                crossAxisAlignment: CrossAxisAlignment.stretch,
+                children: <Widget>[
+                  Card(
+                    child: Container(
+                      padding: EdgeInsets.all(10),
+                      child: Text("Total water required: " +
+                          InformationState.watereq +
+                          " litres"),
+                    ),
+                  ),
+                  Card(
+                    child: Container(
+                      padding: EdgeInsets.all(10),
+                      child: Text("Land size: " +
+                          InformationState.landSize.text +
+                          " sq.meter"),
+                    ),
+                  ),
+                  Card(
+                    child: Container(
+                      padding: EdgeInsets.all(10),
+                      child: Text("Number of days to water in the week: " +
+                          WaterdayState.fucheck().toString()),
+                    ),
+                  ),
+                  ElevatedButton(
+                      onPressed: () {}, child: Text("Get the Schedule")),
+                ],
+              ),
             ),
           )),
     );

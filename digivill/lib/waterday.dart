@@ -20,7 +20,7 @@ class WaterdayState extends State<Waterday> {
     "Saturday",
     "Sunday"
   ];
-  String _title = "Day to Irrigate";
+  String _title = "Days to irrigate";
   static int checkdata = 0;
   static int fucheck() {
     return checkdata;
@@ -42,6 +42,7 @@ class WaterdayState extends State<Waterday> {
                 return ListTile(
                   title: Text(days[index]),
                   trailing: Checkbox(
+                      activeColor: Colors.blue,
                       onChanged: (checked) {
                         setState(
                           () {

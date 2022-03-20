@@ -79,6 +79,9 @@ class InformationState extends State<Information> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      appBar: AppBar(
+        title: Text('Data input'),
+      ),
       body: Container(
         child: Padding(
             padding: const EdgeInsets.all(10),
@@ -94,12 +97,13 @@ class InformationState extends State<Information> {
                   ),
                 ),
                 Container(
-                    alignment: Alignment.center,
-                    padding: const EdgeInsets.all(10),
-                    child: const Text(
-                      'ENTER DATA',
-                      style: TextStyle(fontSize: 20),
-                    )),
+                  alignment: Alignment.center,
+                  padding: const EdgeInsets.all(10),
+                  // child: const Text(
+                  //   'Data input',
+                  //   style: TextStyle(fontSize: 20),
+                  // )
+                ),
                 Container(
                     height: 50,
                     padding: const EdgeInsets.fromLTRB(10, 0, 10, 10),
@@ -119,7 +123,7 @@ class InformationState extends State<Information> {
                   child: TextField(
                     decoration: const InputDecoration(
                       border: OutlineInputBorder(),
-                      labelText: 'Enter Land Size(in msq.)',
+                      labelText: 'Enter Land Size(in sq. m)',
                     ),
                     controller: landSize,
                     keyboardType: TextInputType.number,
@@ -147,7 +151,7 @@ class InformationState extends State<Information> {
                       return DropdownMenuItem<String>(
                         value: value,
                         child: Text(value +
-                            "                                                                          "),
+                            "                                                                                   "),
                       );
                     }).toList(),
                   ),
@@ -174,7 +178,7 @@ class InformationState extends State<Information> {
                       return DropdownMenuItem<String>(
                         value: value,
                         child: Text(value +
-                            "                                                                       "),
+                            "                                                                                "),
                       );
                     }).toList(),
                   ),
