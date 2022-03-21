@@ -1,3 +1,4 @@
+import 'package:digivill/schedule.dart';
 import 'package:flutter/material.dart';
 import 'afterlogin.dart';
 import 'waterday.dart';
@@ -50,7 +51,13 @@ class IrrinfoState extends State<Irrinfo> {
                     ),
                   ),
                   ElevatedButton(
-                      onPressed: () {}, child: Text("Get the Schedule")),
+                      onPressed: () {
+                        Navigator.push(
+                          context,
+                          MaterialPageRoute(builder: (context) => schedule()),
+                        );
+                      },
+                      child: Text("Get the Schedule")),
                 ],
               ),
             ),

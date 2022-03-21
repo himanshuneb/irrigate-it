@@ -10,8 +10,8 @@ class Waterday extends StatefulWidget {
 
 class WaterdayState extends State<Waterday> {
   static int _len = 7;
-  List<bool> isChecked = List.generate(_len, (index) => false);
-  List<String> days = [
+  static List<bool> isChecked = List.generate(_len, (index) => false);
+  static List<String> days = [
     "Monday",
     "Tuesday",
     "Wednesday",
@@ -20,17 +20,27 @@ class WaterdayState extends State<Waterday> {
     "Saturday",
     "Sunday"
   ];
-  String _title = "Days to irrigate";
+  static List<String> finaldays = [];
   static int checkdata = 0;
   static int fucheck() {
     return checkdata;
+  }
+
+  static void mark() {
+    var t = 0;
+    for (var i = 0; i < isChecked.length; i++) {
+      if (isChecked[i] == true) {
+        finaldays.insert(t, days[i]);
+        t++;
+      }
+    }
   }
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text('$_title'),
+        title: const Text('Days to irrigate'),
       ),
       body: Column(
         children: [
@@ -60,6 +70,7 @@ class WaterdayState extends State<Waterday> {
           ),
           ElevatedButton(
               onPressed: (() {
+                mark();
                 Navigator.push(
                   context,
                   MaterialPageRoute(builder: (context) => Irrinfo()),
