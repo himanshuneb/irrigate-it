@@ -42,8 +42,6 @@ class InformationState extends State<Information> {
     Position position = await Geolocator.getCurrentPosition();
     lati = position.latitude.toString();
     longi = position.longitude.toString();
-    print(position.latitude.toString());
-    print(position.longitude.toString());
   }
 
   int t = 0;
