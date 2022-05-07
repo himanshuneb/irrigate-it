@@ -4,6 +4,7 @@ import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import './authProvider.dart';
 import './httpException.dart';
+import './afterlogin.dart';
 
 enum AuthMode { Signup, Login }
 
@@ -145,7 +146,7 @@ class _AuthCardState extends State<AuthCard> {
             ),
             elevation: 8.0,
             child: Container(
-              height: _authMode == AuthMode.Signup ? 320 : 260,
+              height: _authMode == AuthMode.Signup ? 360 : 300,
               constraints: BoxConstraints(
                   minHeight: _authMode == AuthMode.Signup ? 320 : 260),
               width: deviceSize.width * 0.75,
@@ -215,6 +216,10 @@ class _AuthCardState extends State<AuthCard> {
                         materialTapTargetSize: MaterialTapTargetSize.shrinkWrap,
                         textColor: Colors.teal,
                       ),
+                      FlatButton(onPressed:(){ Navigator.push(
+                          context,
+                          MaterialPageRoute(builder: (context) => Information()),
+                        );}, child: Text("Guest Mode"),textColor: Color.fromARGB(255, 168, 148, 223),)
                     ],
                   ),
                 ),

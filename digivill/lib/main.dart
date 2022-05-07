@@ -28,24 +28,12 @@ class MyApp extends StatelessWidget {
         // ),
       ],
       child: Consumer<Auth>(
-        builder: (ctx, auth, _) => MaterialApp(
-          title: 'IRRIGATE IT',
-          theme: ThemeData.dark(),
-          // theme: ThemeData(
-          //   primarySwatch: Colors.purple,
-          //   accentColor: Colors.deepOrange,
-          //   fontFamily: 'Lato',
-          // ),
-          home: auth.isAuth ? Information() : AuthScreen(),
-          routes: {
-            // ProductDetailScreen.routeName: (ctx) => ProductDetailScreen(),
-            // CartScreen.routeName: (ctx) => CartScreen(),
-            // OrdersScreen.routeName: (ctx) => OrdersScreen(),
-            // UserProductsScreen.routeName: (ctx) => UserProductsScreen(),
-            // EditProductScreen.routeName: (ctx) => EditProductScreen(),
-          },
-        ),
+      builder: (ctx, auth, _) => MaterialApp(
+        title: 'IRRIGATE IT',
+        theme: ThemeData.dark(),
+        home: auth.isAuth ? Information() : AuthScreen(),
       ),
+        ),
     );
   }
 }
