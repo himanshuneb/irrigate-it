@@ -151,7 +151,7 @@ class InformationState extends State<Information> {
                       return DropdownMenuItem<String>(
                         value: value,
                         child: Text(value +
-                            "                                                                                   "),
+                            "                                "),
                       );
                     }).toList(),
                   ),
@@ -178,7 +178,7 @@ class InformationState extends State<Information> {
                       return DropdownMenuItem<String>(
                         value: value,
                         child: Text(value +
-                            "                                                                                "),
+                            "                               "),
                       );
                     }).toList(),
                   ),

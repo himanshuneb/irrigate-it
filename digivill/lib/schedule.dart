@@ -10,35 +10,46 @@ class schedule extends StatefulWidget {
 }
 
 class _scheduleState extends State<schedule> {
-  static int waterperday = 0;
-
+  static double waterTotal = double.parse(InformationState.watereq);
+  static double daysTotal=double.parse(WaterdayState.finaldays.length.toString());
+  static double waterperday=(waterTotal/daysTotal);
   @override
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: Column(
-        mainAxisAlignment: MainAxisAlignment.center,
-        crossAxisAlignment: CrossAxisAlignment.stretch,
-        children: [
-          Text("Days to give water this week:"),
-          SizedBox(
-            height: 100,
-            child: Container(
-              child: ListView.builder(
-                  padding: const EdgeInsets.all(8),
-                  itemCount: WaterdayState.finaldays.length,
-                  itemBuilder: (BuildContext context, int index) {
-                    return Container(
-                      child: Column(
-                        children: [
-                          Text(WaterdayState.finaldays[index]),
-                        ],
-                      ),
-                    );
-                  }),
+      body: Padding(
+        padding: const EdgeInsets.all(20.0),
+        child: Column(
+          
+          mainAxisAlignment: MainAxisAlignment.spaceAround,
+          crossAxisAlignment: CrossAxisAlignment.center,
+          children: <Widget>[
+            Card(
+              child: Column(
+                children: [
+                  Text("Days to give water this week:"),
+                  SizedBox(
+                    height: 150,
+                    child: Container(
+                      child: ListView.builder(
+                          padding: const EdgeInsets.all(8),
+                          itemCount: WaterdayState.finaldays.length,
+                          itemBuilder: (BuildContext context, int index) {
+                            return Container(
+                              child: Column(
+                                children: [
+                                  Text(WaterdayState.finaldays[index]),
+                                  Text("Water Required: "+waterperday.toStringAsFixed(2)+"  Litres"),
+                                ],
+                              ),
+                            );
+                          }),
+                    ),
+                  ),
+                ],
+              ),
             ),
-          ),
-        ],
+        ]),
       ),
     );
   }

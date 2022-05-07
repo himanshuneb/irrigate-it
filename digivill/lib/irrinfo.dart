@@ -31,7 +31,7 @@ class IrrinfoState extends State<Irrinfo> {
                     child: Container(
                       padding: EdgeInsets.all(10),
                       child: Text("Total water required: " +
-                          InformationState.watereq +
+                          double.parse(InformationState.watereq).toStringAsFixed(2) +
                           " litres"),
                     ),
                   ),
@@ -50,14 +50,17 @@ class IrrinfoState extends State<Irrinfo> {
                           WaterdayState.fucheck().toString()),
                     ),
                   ),
-                  ElevatedButton(
-                      onPressed: () {
-                        Navigator.push(
-                          context,
-                          MaterialPageRoute(builder: (context) => schedule()),
-                        );
-                      },
-                      child: Text("Get the Schedule")),
+                  Padding(
+                    padding: const EdgeInsets.all(16.0),
+                    child: ElevatedButton(
+                        onPressed: () {
+                          Navigator.push(
+                            context,
+                            MaterialPageRoute(builder: (context) => schedule()),
+                          );
+                        },
+                        child: Text("Get the Schedule")),
+                  ),
                 ],
               ),
             ),

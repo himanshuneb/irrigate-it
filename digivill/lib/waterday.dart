@@ -27,7 +27,8 @@ class WaterdayState extends State<Waterday> {
   }
 
   static void mark() {
-    var t = 0;
+    finaldays.clear();
+    int t = 0;
     for (var i = 0; i < isChecked.length; i++) {
       if (isChecked[i] == true) {
         finaldays.insert(t, days[i]);
